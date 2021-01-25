@@ -38,9 +38,9 @@ public class sqlUserDataAccess implements UserDao {
     public int updateUserById(UUID id, User user) {
         return selectUserById(id)
                .map(u -> {
-                   int idxOfUser = db.indexOf(user);
+                   int idxOfUser = db.indexOf(u);
                    if(idxOfUser >=0){
-                       db.set(idxOfUser, user);
+                       db.set(idxOfUser, new User(id, user.getName()));
                        return 1;
                    }
                     return 0;
